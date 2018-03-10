@@ -119,6 +119,9 @@ fi
 LIBCURL_CHECK_CONFIG(, 7.15.2, ,
   [AC_MSG_ERROR([Missing required libcurl >= 7.15.2])])
 
+ARM_FLAGS="-funroll-loops -fomit-frame-pointer"
+
+AC_SUBST(ARM_FLAGS)
 AC_SUBST(JANSSON_LIBS)
 AC_SUBST(PTHREAD_FLAGS)
 AC_SUBST(PTHREAD_LIBS)

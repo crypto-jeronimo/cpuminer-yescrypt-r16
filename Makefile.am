@@ -9,7 +9,12 @@ EXTRA_DIST	= example-cfg.json nomacro.pl
 
 SUBDIRS		= compat
 
-INCLUDES	= $(PTHREAD_FLAGS) -fno-strict-aliasing $(JANSSON_INCLUDES)
+INCLUDES    = $(PTHREAD_FLAGS) -fno-strict-aliasing $(JANSSON_INCLUDES)
+
+if ARCH_ARM
+    INCLUDES += $(ARM_FLAGS)
+endif
+
 
 bin_PROGRAMS	= minerd
 
@@ -21,7 +26,7 @@ minerd_SOURCES	= elist.h miner.h compat.h \
           yescrypt.c yescrypt.h
 if USE_ASM
 if ARCH_x86
-minerd_SOURCES += sha2-x86.S scrypt-x86.S 
+minerd_SOURCES += sha2-x86.S scrypt-x86.S
 endif
 if ARCH_x86_64
 minerd_SOURCES += sha2-x64.S scrypt-x64.S
